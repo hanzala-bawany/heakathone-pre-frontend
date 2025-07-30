@@ -1,0 +1,121 @@
+.loginPage {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 10vh;
+
+  }
+  
+  .heading {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+  }
+  
+  .inputGroup {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    background-color: #fff;
+  }
+  .inputGroup:focus-within {
+    outline: 1px solid;
+  }
+  
+  .icon {
+    margin-right: 8px;
+    color: #999;
+  }
+  
+  .input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+    background-color: transparent;
+  }
+
+  
+  .linksRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  .forgotPass{
+    color: #007BFF;
+    text-decoration: none;
+  }
+  .forgotPass:hover{
+    text-decoration: underline;
+  }
+
+  .link {
+    color: #555;
+    text-decoration: none;
+  }
+  
+  .link .joinNowBtnInForm{
+    color: #007BFF;
+    text-decoration: none;
+  }
+  .link .joinNowBtnInForm:hover{
+    text-decoration: underline;
+  }
+  
+  .loginBtn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .loginBtn:hover{
+    color: #007BFF;
+    background-color: #fff;
+    outline: 1px solid;
+  }
+  
+  .googleBtn {
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .googleBtn:hover{
+    outline: 1.2px solid;
+  }
+  
