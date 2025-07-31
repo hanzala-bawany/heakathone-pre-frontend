@@ -5,26 +5,38 @@ import { faUser, faLock, faL, faSpinner } from '@fortawesome/free-solid-svg-icon
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
 import { useContext, useState } from 'react';
-// import { authContext } from '../../context/authContextApi';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { baseURL } from "../../utills/baseURL.js"
 
 
 const Login = () => {
 
-  const loading = false
-  const error = false
+  const [loading, setLoading] = useState(false)
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
 
-  // const { dispatch, loading, error } = useContext(authContext)
 
   const loginBtnHandler = async (e) => {
-
     e.preventDefault()
+
+    try {
+      setLoading(true)
+      const res = await axios.post( `${baseURL}/api/auth/login`, {email , password} )
+      console.log(res, "<-- res");
+      toast.success(res?.data?.message)
+      localStorage.setItem("heakathoneLoginUser",JSON.stringify(res?.data?.data))
+      navigate("/")
+      setLoading(false)
+    }
+    catch (err) {
+      toast.error(err?.response?.data?.message)
+      console.log(err, "err in signup call");
+      setLoading(false)
+    }
 
   }
 
@@ -79,10 +91,7 @@ const Login = () => {
             {/* <FontAwesomeIcon className={styles.icon} icon={faGoogle} /> */}
             <FontAwesomeIcon icon={faGoogle} beatFade style={{ color: "#ffc23d", marginLeft: "8px" }} />
           </button>
-          {
-            error && <span style={{ color: "red" }}>Error Here</span>
-          }
-
+  
         </form>
       </div>
     </div>

@@ -1,20 +1,19 @@
 import NavBar from '../../components/navbar/NavBar'
 import styles from './Signup.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock , faSpinner , faEnvelope} from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock, faSpinner, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
-import { useContext, useState } from 'react';
-// import { authContext } from '../../context/authContextApi';
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { baseURL } from "../../utills/baseURL.js"
 
 
 const Signup = () => {
 
-  const loading = false
-  const error = false
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
   const [userInputs, setUserInputs] = useState({})
@@ -24,8 +23,21 @@ const Signup = () => {
   }
 
   const loginBtnHandler = async (e) => {
-
     e.preventDefault()
+
+    try {
+      setLoading(true)
+      const res = await axios.post( `${baseURL}/api/auth/signup`, userInputs )
+      // console.log(res, "<-- res");
+      toast.success(res?.data?.message)
+      navigate("/login")
+      setLoading(false)
+    }
+    catch (err) {
+      toast.error(err?.response?.data?.message)
+      // console.log(err, "err in signup call");
+      setLoading(false)
+    }
 
   }
 
@@ -76,6 +88,17 @@ const Signup = () => {
             />
           </div>
 
+          {/* age */}
+          <div className={styles.inputGroup}>
+            <input
+              type="number"
+              placeholder="Age"
+              id='age'
+              className={styles.input}
+              onChange={inputChangeHandler}
+            />
+          </div>
+
           {/* Password */}
           <div className={styles.inputGroup}>
             <input
@@ -102,10 +125,7 @@ const Signup = () => {
             Sign in with Google
             {/* <FontAwesomeIcon className={styles.icon} icon={faGoogle} /> */}
             <FontAwesomeIcon icon={faGoogle} beatFade style={{ color: "#ffc23d", marginLeft: "8px" }} />
-          </button>
-          {
-            error && <span style={{ color: "red" }}>Error Here</span>
-          }
+          </button>   
 
         </form>
       </div>
