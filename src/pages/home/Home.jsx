@@ -9,7 +9,6 @@ const Home = () => {
   const authStates = useSelector((state) => state.authSlice)
   console.log(authStates);
   
-
   return (
     <div>
       Home
