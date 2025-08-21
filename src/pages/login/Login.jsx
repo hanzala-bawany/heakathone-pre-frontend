@@ -26,7 +26,7 @@ const Login = () => {
     try {
       setLoading(true)
       const res = await axios.post( `${baseURL}/api/auth/login`, {email , password} )
-      console.log(res, "<-- res");
+      // console.log(res, "<-- res");
       toast.success(res?.data?.message)
       localStorage.setItem("heakathoneLoginUser",JSON.stringify(res?.data?.data))
       navigate("/")

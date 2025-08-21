@@ -12,13 +12,18 @@ export const useFetch = (route) => {
 
 
   useEffect(() => {
-
     const fetchData = async () => {
+
+      const token = localStorage.getItem("heakathoneLoginUser");
 
       setLoading(true)
       try {
-        const fetchData = await axios.get(`${baseURL}${route}`, { withCredentials: true })
-        console.log(fetchData, "fetchData in useFetch");
+        const fetchData = await axios.get(`${baseURL}${route}`, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          }
+        })
+        console.log(fetchData, "--> fetchData in useFetch");
 
         setData(fetchData.data)
         setLoading(false)

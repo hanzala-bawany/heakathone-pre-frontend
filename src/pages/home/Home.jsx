@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector , useDispatch } from "react-redux"
 import { increment, decrement, incrementByAmount , nameChanger } from "../../reduxToolKit/authSlice"
 import MidModal from '../../components/midModal/MidModal'
+import { useFetch } from '../../utills/useFetch'
 
 const Home = () => {
 
   const dispatch = useDispatch()
   const authStates = useSelector((state) => state.authSlice)
   console.log(authStates);
+
+  const {data , error , loading} = useFetch(`/api/test/getTestData`)
+  // if(error == "Request failed with status code 404") localStorage.removeItem("heakathoneLoginUser")
+  console.log(data,"--> data");
+  console.log(error,"-->error");
+  console.log(loading,"-->loading");
+  
   
   return (
     <div>
