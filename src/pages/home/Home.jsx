@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import { useSelector , useDispatch } from "react-redux"
-import { increment, decrement, incrementByAmount , nameChanger } from "../../reduxToolKit/authSlice"
+import { useSelector, useDispatch } from "react-redux"
+import { increment, decrement, incrementByAmount, nameChanger } from "../../reduxToolKit/authSlice"
 import MidModal from '../../components/midModal/MidModal'
 import { useFetch } from '../../utills/useFetch'
+import { toast } from 'react-toastify';
 
 const Home = () => {
 
@@ -10,21 +11,24 @@ const Home = () => {
   const authStates = useSelector((state) => state.authSlice)
   console.log(authStates);
 
-  const {data , error , loading} = useFetch(`/api/test/getTestData`)
-  // if(error == "Request failed with status code 404") localStorage.removeItem("heakathoneLoginUser")
-  console.log(data,"--> data");
-  console.log(error,"-->error");
-  console.log(loading,"-->loading");
-  
-  
+  const { data, error, loading } = useFetch(`/api/test/getTestData`)
+
+  console.log(data, "--> data");
+  console.log(error, "-->error");
+  console.log(loading, "-->loading");
+
+  // toast.error(error)
+
+
+
   return (
     <div>
       Home
 
       < MidModal />
 
-      <button onClick={ () => dispatch(increment()) }>Click me for age ++</button>
-      <button onClick={ () => dispatch(nameChanger("hanzala")) }>Click me for name change</button>
+      <button onClick={() => dispatch(increment())}>Click me for age ++</button>
+      <button onClick={() => dispatch(nameChanger("hanzala"))}>Click me for name change</button>
     </div>
   )
 }

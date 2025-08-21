@@ -14,7 +14,7 @@ export const useFetch = (route) => {
   useEffect(() => {
     const fetchData = async () => {
 
-      const token = localStorage.getItem("heakathoneLoginUser");
+      const token = JSON.parse(localStorage.getItem("heakathoneLoginUser")) ;
 
       setLoading(true)
       try {
@@ -23,14 +23,15 @@ export const useFetch = (route) => {
             "Authorization": `Bearer ${token}`,
           }
         })
-        console.log(fetchData, "--> fetchData in useFetch");
+        // console.log(fetchData, "--> fetchData in useFetch");
 
         setData(fetchData.data)
         setLoading(false)
-        // localStorage.removeItem("loginUser")
+        
       }
       catch (error) {
-        setError(error?.message)
+        // console.log(error,"error");
+        setError(error?.response?.data?.message)
         setLoading(false)
       }
     }
@@ -41,12 +42,17 @@ export const useFetch = (route) => {
   const reFetchData = async () => {
     setLoading(true)
     try {
-      const fetchData = await axios.get(url, { withCredentials: true })
+      const fetchData = await axios.get(url, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        }
+      })
       setData(fetchData.data)
       setLoading(false)
     }
     catch (error) {
-      setError(error?.message)
+      // console.log(error,"<--- error");
+      setError(error?.response?.data?.message)
       setLoading(false)
     }
   }
