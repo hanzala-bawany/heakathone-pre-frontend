@@ -30,7 +30,7 @@ export const useFetch = (route) => {
         
       }
       catch (error) {
-        // console.log(error,"error");
+        // console.log(error,"error")
         setError(error?.response?.data?.message)
         setLoading(false)
       }
