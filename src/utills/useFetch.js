@@ -23,7 +23,6 @@ export const useFetch = (route) => {
             "Authorization": `Bearer ${token}`,
           }
         })
-        // console.log(fetchData, "--> fetchData in useFetch");
 
         setData(fetchData.data)
         setLoading(false)
@@ -40,15 +39,19 @@ export const useFetch = (route) => {
   }, [])
 
   const reFetchData = async () => {
+    const token = JSON.parse(localStorage.getItem("heakathoneLoginUser")) ;
+
     setLoading(true)
     try {
-      const fetchData = await axios.get(url, {
+      const fetchData = await axios.get(`${baseURL}${route}`, {
         headers: {
           "Authorization": `Bearer ${token}`,
         }
       })
+
       setData(fetchData.data)
       setLoading(false)
+      
     }
     catch (error) {
       // console.log(error,"<--- error");

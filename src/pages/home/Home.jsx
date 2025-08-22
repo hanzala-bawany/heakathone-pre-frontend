@@ -13,7 +13,7 @@ const Home = () => {
   const authStates = useSelector((state) => state.authSlice)
   console.log(authStates);
 
-  const { data, error, loading } = useFetch(`/api/test/getTestData`)
+  const { data, error, loading } = useFetch(`/api/test/getTestData?name=hanzala&age=19`)
 
   if(error == "Invalid User") {
     localStorage.removeItem("heakathoneLoginUser")
