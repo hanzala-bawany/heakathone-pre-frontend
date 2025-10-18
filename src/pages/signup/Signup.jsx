@@ -42,12 +42,8 @@ const Signup = () => {
   }
 
 
-
-
   return (
     <div className={styles.loginPage}>
-
-      <NavBar />
 
       <div className={styles.container}>
         <h2 className={styles.heading}>Let's Get Started</h2>

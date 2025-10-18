@@ -4,7 +4,7 @@ import { baseURL } from "./baseURL"
 
 
 
-export const useFetch = (route) => {
+export const useFetch = (route , postData) => {
 
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
@@ -14,15 +14,10 @@ export const useFetch = (route) => {
   useEffect(() => {
     const fetchData = async () => {
 
-      const token = JSON.parse(localStorage.getItem("heakathoneLoginUser")) ;
 
       setLoading(true)
       try {
-        const fetchData = await axios.get(`${baseURL}${route}`, {
-          headers: {
-            "Authorization": `Bearer ${token}`,
-          }
-        })
+        const fetchData = await axios.get(`${baseURL}${route}`, postData)
 
         setData(fetchData.data)
         setLoading(false)

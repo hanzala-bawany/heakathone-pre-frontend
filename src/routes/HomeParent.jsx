@@ -1,9 +1,9 @@
 import { useEffect } from "react"
-import { Navigate, Outlet } from "react-router-dom"
+import { Navigate, Outlet, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 
 const HomeParent = () => {
-    // Outlet
+ 
     const isUserLogin = JSON.parse(localStorage.getItem("heakathoneLoginUser"))
 
     useEffect(() => {

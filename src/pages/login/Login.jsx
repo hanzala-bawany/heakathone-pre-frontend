@@ -34,7 +34,7 @@ const Login = () => {
     }
     catch (err) {
       toast.error(err?.response?.data?.message)
-      console.log(err, "err in signup call");
+      console.log(err, "err in login call");
       setLoading(false)
     }
 
@@ -45,8 +45,6 @@ const Login = () => {
 
   return (
     <div className={styles.loginPage}>
-
-      <NavBar />
 
       <div className={styles.container}>
         <h2 className={styles.heading}>Welcome Back</h2>

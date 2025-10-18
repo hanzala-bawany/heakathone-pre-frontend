@@ -5,7 +5,7 @@ const initialState = {
   age: 19,
 }
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
   name: 'authSlice',
   initialState,
   reducers: {
@@ -18,13 +18,14 @@ export const authSlice = createSlice({
     incrementByAmount: (state, action) => {
       state.age += action.payload
     },
-    nameChanger : (state , action) => {
+    nameChanger: (state, action) => {
+      console.log(action, "action <<<<<<<<<");
       state.name = action.payload
     }
   },
 })
 
 
-export const { increment, decrement, incrementByAmount , nameChanger } = authSlice.actions
+export const { increment, decrement, incrementByAmount, nameChanger } = authSlice.actions
 
 export default authSlice.reducer
