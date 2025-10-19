@@ -1,4 +1,3 @@
-import NavBar from '../../components/navbar/NavBar'
 import styles from './login.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faL, faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +8,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { baseURL } from "../../utills/baseURL.js"
+import { useDispatch } from "react-redux";
 
 
 const Login = () => {
@@ -18,6 +18,8 @@ const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
+  const dispatch = useDispatch();
+
 
 
   const loginBtnHandler = async (e) => {
@@ -26,7 +28,6 @@ const Login = () => {
     try {
       setLoading(true)
       const res = await axios.post( `${baseURL}/api/auth/login`, {email , password} )
-      // console.log(res, "<-- res");
       toast.success(res?.data?.message)
       localStorage.setItem("heakathoneLoginUser",JSON.stringify(res?.data?.data))
       navigate("/")

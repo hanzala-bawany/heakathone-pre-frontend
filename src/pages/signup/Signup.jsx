@@ -1,4 +1,3 @@
-import NavBar from '../../components/navbar/NavBar'
 import styles from './Signup.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faSpinner, faEnvelope } from '@fortawesome/free-solid-svg-icons';
